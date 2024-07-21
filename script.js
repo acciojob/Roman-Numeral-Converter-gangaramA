@@ -1,3 +1,5 @@
+// script.js
+
 function convertToRoman(num) {
     const romanSymbols = [
         ['M', 1000], 
@@ -14,6 +16,10 @@ function convertToRoman(num) {
         ['IV', 4],
         ['I', 1]
     ];
+
+    if (num === 0) {
+        return ''; // Return empty string for 0 as there's no Roman numeral representation for 0
+    }
 
     let romanNumeral = '';
 
