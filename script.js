@@ -1,37 +1,26 @@
 // script.js
 
-function convertToRoman(num) {
-    const romanSymbols = [
-        ['M', 1000], 
-        ['CM', 900],
-        ['D', 500], 
-        ['CD', 400],
-        ['C', 100], 
-        ['XC', 90],
-        ['L', 50], 
-        ['XL', 40],
-        ['X', 10], 
-        ['IX', 9],
-        ['V', 5], 
-        ['IV', 4],
-        ['I', 1]
-    ];
-
-    if (num === 0) {
-        return ''; // Return empty string for 0 as there's no Roman numeral representation for 0
+function firstWord(str) {
+    // Trim leading and trailing spaces
+    str = str.trim();
+    
+    // If the string is empty after trimming, return an empty string
+    if (str === '') {
+        return '';
     }
-
-    let romanNumeral = '';
-
-    for (let [symbol, value] of romanSymbols) {
-        while (num >= value) {
-            romanNumeral += symbol;
-            num -= value;
-        }
+    
+    // Find the index of the first space
+    const firstSpaceIndex = str.indexOf(' ');
+    
+    // If no space is found, return the entire string
+    if (firstSpaceIndex === -1) {
+        return str;
     }
-
-    return romanNumeral;
+    
+    // Return the substring up to the first space
+    return str.substring(0, firstSpaceIndex);
 }
 
-const input = prompt("Enter a number to convert to Roman numeral:");
-alert(convertToRoman(Number(input)));
+// Do not change the code below
+const s = prompt("Enter String:");
+alert(firstWord(s));
