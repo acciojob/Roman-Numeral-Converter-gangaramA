@@ -1,26 +1,36 @@
 // script.js
 
-function firstWord(str) {
-    // Trim leading and trailing spaces
-    str = str.trim();
-    
-    // If the string is empty after trimming, return an empty string
-    if (str === '') {
-        return '';
+function romanNumerals(num) {
+  const symbols = [
+    ['M', 1000],
+    ['D', 500],
+    ['C', 100],
+    ['L', 50],
+    ['X', 10],
+    ['V', 5],
+    ['I', 1]
+  ];
+
+  let result = '';
+
+  for (let i = 0; i < symbols.length; i++) {
+    const symbol = symbols[i][0];
+    const value = symbols[i][1];
+
+    while (num >= value) {
+      result += symbol;
+      num -= value;
     }
-    
-    // Find the index of the first space
-    const firstSpaceIndex = str.indexOf(' ');
-    
-    // If no space is found, return the entire string
-    if (firstSpaceIndex === -1) {
-        return str;
+
+    if (num >= value - (value / 5)) {
+      result += symbol + symbols[i - 1][0];
+      num -= value - (value / 5);
     }
-    
-    // Return the substring up to the first space
-    return str.substring(0, firstSpaceIndex);
+  }
+
+  return result;
 }
 
 // Do not change the code below
-const s = prompt("Enter String:");
-alert(firstWord(s));
+const s = prompt("Enter a number (0-100000):");
+alert(romanNumerals(parseInt(s)));
